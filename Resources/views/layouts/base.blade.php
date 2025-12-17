@@ -35,5 +35,16 @@
 
         @filamentScripts
         @vite(['Resources/js/app.js'],'themes/One/dist')
+        <script>
+        setInterval(() => {
+            fetch("/keep-alive", {
+              method: "GET",
+              headers: {
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                "X-Requested-With": "XMLHttpRequest"
+              }
+            });
+        }, 5 * 60 * 1000);
+       </script>
     </body>
 </html>
